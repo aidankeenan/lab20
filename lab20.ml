@@ -10,25 +10,7 @@ let threshold img threshold =
   map  (fun row -> map (fun pixel -> if pixel <= threshold then 0. else 1.)
                                  row) img
 
-let rec diffuse img threshold error = 
-  match img with
-  | [] -> []
-  | hd::tl ->
-    let diffuse_row row threshold error =
-      match row with
-      | [] -> diffuse tl threshold error
-      | pixel:: tl2 -> 
-      let new_pixel = (if pixel <= threshold then 0. else 1.) in
-      let new_error = pixel - threshold in 
-    new_pixel :: 
 
-
-  let diffuse_pixel pixel error = 
-    let new_pixel = (if pixel + error <= threshold then 0. else 1.) in
-    let new_error = pixel - threshold in
-    (new_pixel, new_error) 
-  map  (fun row -> map (fun pixel error-> fst (diffuse_pixel pixel error) )
-                                 row) img
        
 (* show the image *)
 let depict img =
